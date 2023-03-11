@@ -1,7 +1,9 @@
 import csv
 import os
 
-def load_csv():
+
+def load_csv() -> list:
+    """загрузка данных из csv файла"""
     csv_data = []
     with open("../src/items.csv", encoding="CP1251") as csv_file:
         take_csv_data = csv.reader(csv_file, delimiter=",")
