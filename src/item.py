@@ -1,6 +1,7 @@
 import os
 from src.utils import load_csv
 
+
 class Item:
     """Класс для представления товара в магазине"""
     pay_rate = 1.0
@@ -8,11 +9,10 @@ class Item:
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
-        Создание экземпляра класса item.
-
-        :param name: Название товара.
-        :param price: Цена за единицу товара.
-        :param quantity: Количество товара в магазине.
+        Создание экземпляра класса item
+        :param name: Название товара
+        :param price: Цена за единицу товара
+        :param quantity: Количество товара в магазине
         """
         self.__name = name
         self.price = price
@@ -20,19 +20,19 @@ class Item:
         self.all.append(self)
 
     @property
-    def name(self):
+    def name(self) -> str:
       return self.__name
 
     @name.setter
-    def name(self, new_name):
+    def name(self, new_name: str) -> None:
         if len(new_name) > 10:
             raise Exception("Длина наименования товара превышает 10 символов.")
         self.__name = new_name
 
     def calculate_total_price(self) -> float:
         """
-        Рассчитывает общую стоимость конкретного товара в магазине.
-        :return: Общая стоимость товара.
+        Рассчитывает общую стоимость конкретного товара в магазине
+        :return: Общая стоимость товара
         """
         return self.price * self.quantity
 
@@ -41,13 +41,15 @@ class Item:
         self.price = self.price * self.pay_rate
 
     @classmethod
-    def instantiate_from_csv(cls):
-        """ создаем экзепляры класса на основе данных их файла"""
+    def instantiate_from_csv(cls) -> None:
+        """Cоздаем экзепляры класса на основе данных их файла"""
         cls.all = []
         for data in load_csv():
             cls(*data)
 
     @staticmethod
     def string_to_number(number: str) -> int:
-        """статический метод, возвращающий число из числа-строки"""
+        """Cтатический метод, возвращающий число из числа-строки
+        :return: Число в нужном нам формате
+        """
         return int(number.split(".")[0])
