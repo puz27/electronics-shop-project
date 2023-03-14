@@ -53,3 +53,9 @@ class Item:
         :return: Число в нужном нам формате
         """
         return int(number.split(".")[0])
+
+    def __str__(self):
+        return f"{self.__name}"
+
+    def __repr__(self):
+        return f"Item{self.__name, self.price, self.quantity}"
