@@ -55,7 +55,9 @@ class Item:
         return int(number.split(".")[0])
 
     def __str__(self):
+        """Тандер для вывода информации об экземпляре"""
         return f"{self.__name}"
 
     def __repr__(self):
+        """Тандер для вывода информации об экземпляре"""
         return f"Item{self.__name, self.price, self.quantity}"
