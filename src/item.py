@@ -14,10 +14,13 @@ class Item:
         :param price: Цена за единицу товара
         :param quantity: Количество товара в магазине
         """
-        self.__name = name
-        self.price = price
-        self.quantity = quantity
-        self.all.append(self)
+        if self.validate_name(name):
+            self.__name = name
+            self.price = price
+            self.quantity = quantity
+            self.all.append(self)
+        else:
+            raise Exception("Длина наименования товара превышает 10 символов.")
 
     @property
     def name(self) -> str:
@@ -25,8 +28,6 @@ class Item:
 
     @name.setter
     def name(self, new_name: str) -> None:
-        if len(new_name) > 10:
-            raise Exception("Длина наименования товара превышает 10 символов.")
         self.__name = new_name
 
     def calculate_total_price(self) -> float:
@@ -39,6 +40,10 @@ class Item:
     def apply_discount(self) -> None:
         """Применяет установленную скидку для конкретного товара"""
         self.price = self.price * self.pay_rate
+
+    @classmethod
+    def validate_name(cls, name):
+        return len(name) <= 10
 
     @classmethod
     def instantiate_from_csv(cls) -> None:
@@ -61,3 +66,6 @@ class Item:
     def __repr__(self):
         """Тандер для вывода информации об экземпляре"""
         return f"Item{self.__name, self.price, self.quantity}"
+
+    def __add__(self, other):
+        self.quantity + other.quantity
