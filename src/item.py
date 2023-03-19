@@ -20,19 +20,25 @@ class Item:
             self.quantity = quantity
             self.all.append(self)
         else:
-            raise Exception("Длина наименования товара превышает 10 символов.")
+            raise ValueError("Длина наименования товара превышает 10 символов.")
 
     @property
     def name(self) -> str:
-      return self.__name
+        """Возвращает название товара"""
+        return self.__name
 
     @name.setter
     def name(self, new_name: str) -> None:
-        self.__name = new_name
+        """Присваивает название товару"""
+        if self.validate_name(new_name):
+            self.__name = new_name
+        else:
+            raise ValueError("Длина наименования товара превышает 10 символов.")
+
 
     def calculate_total_price(self) -> float:
         """
-        Рассчитывает общую стоимость конкретного товара в магазине
+        Расчитывает общую стоимость конкретного товара в магазине
         :return: Общая стоимость товара
         """
         return self.price * self.quantity
@@ -43,6 +49,7 @@ class Item:
 
     @classmethod
     def validate_name(cls, name):
+        """Проверка названия на длину"""
         return len(name) <= 10
 
     @classmethod
@@ -60,12 +67,13 @@ class Item:
         return int(number.split(".")[0])
 
     def __str__(self):
-        """Тандер для вывода информации об экземпляре"""
+        """Дандер для вывода информации об экземпляре"""
         return f"{self.__name}"
 
     def __repr__(self):
-        """Тандер для вывода информации об экземпляре"""
+        """Дандер для вывода информации об экземпляре"""
         return f"Item{self.__name, self.price, self.quantity}"
 
     def __add__(self, other):
-        self.quantity + other.quantity
+        """Дандер для реализации сложения количесва товаров класса"""
+        return self.quantity + other.quantity
