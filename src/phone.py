@@ -38,4 +38,6 @@ class Phone(Item):
 
     def __add__(self, other):
         """Дандер для реализации сложения количесва товаров класса"""
-        return self.quantity + other.quantity
+        if isinstance(other, Phone) or isinstance(other, Item):
+            return self.quantity + other.quantity
+        raise ValueError("Нельзя складывать с экземплярами классов не принадлежащих Phone или Item")
