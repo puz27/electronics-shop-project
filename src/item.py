@@ -80,4 +80,3 @@ class Item:
             return self.quantity + other.quantity
         raise ValueError("Нельзя складывать с экземплярами классов не принадлежащих классу Item")
 
-
