@@ -6,7 +6,6 @@ if __name__ == '__main__':
     assert str(kb.language) == "EN"
     kb.change_lang()
     assert str(kb.language) == "RU"
-    test_object = KeyBoard("Dell Long Descripton for test", 5, 5)
     # # Сделали RU -> EN -> RU
     kb.change_lang().change_lang()
     assert str(kb.language) == "RU"
