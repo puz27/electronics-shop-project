@@ -29,7 +29,7 @@ def test_str_item(test_object):
 
 
 def test_repr_item(test_object):
-    """Проверка вывода информации о тоываре"""
+    """Проверка вывода информации о товаре"""
     assert (repr(test_object)) == "Item('Potato', 100.5, 50)"
 
 
