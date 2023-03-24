@@ -48,7 +48,7 @@ class Item:
         self.price = self.price * self.pay_rate
 
     @classmethod
-    def validate_name(cls, name):
+    def validate_name(cls, name: str) -> int:
         """Проверка названия на длину"""
         return len(name) <= 10
 
@@ -66,17 +66,16 @@ class Item:
         """
         return int(number.split(".")[0])
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Дандер для вывода информации об экземпляре"""
         return f"{self.__name}"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Дандер для вывода информации об экземпляре"""
         return f"Item{self.__name, self.price, self.quantity}"
 
-    def __add__(self, other):
+    def __add__(self, other) -> int or ValueError:
         """Дандер для реализации сложения количесва товаров класса"""
         if isinstance(other, Item):
             return self.quantity + other.quantity
         raise ValueError("Нельзя складывать с экземплярами классов не принадлежащих классу Item")
-

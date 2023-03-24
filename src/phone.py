@@ -4,39 +4,36 @@ from src.item import Item
 class Phone(Item):
 
     def __init__(self, name: str, price: float, quantity: int, number_of_sim: int = 1) -> None:
-        """
-        Создание экземпляра класса Phone. Наследуется от класса Item
-        :param number_of_sim: количество сим карт
-        """
+        """Создание экземпляра класса Phone. Наследуется от класса Item"""
         super().__init__(name, price, quantity)
         if self.validate_sim_count(number_of_sim):
             self.__number_of_sim = number_of_sim
         else:
             raise ValueError("Количество физических SIM-карт должно быть целым числом больше нуля.")
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Дандер для вывода информации об экземпляре"""
         return f"Phone{self.name, self.price, self.quantity, self.number_of_sim}"
 
     @property
-    def number_of_sim(self):
-        """Устанавливает количество карт телефону """
+    def number_of_sim(self) -> int:
+        """Возвращает количество карт телефону """
         return self.__number_of_sim
 
     @number_of_sim.setter
-    def number_of_sim(self, new_number_of_sim):
-        """Получает количество карт телефона """
+    def number_of_sim(self, new_number_of_sim: int) -> int or ValueError:
+        """Устанавливает количество карт телефона """
         if self.validate_sim_count(new_number_of_sim):
             self.__number_of_sim = new_number_of_sim
         else:
             raise ValueError("Количество физических SIM-карт должно быть целым числом больше нуля.")
 
     @classmethod
-    def validate_sim_count(cls, number_of_sim):
+    def validate_sim_count(cls, number_of_sim: int) -> bool:
         """Проверка корректности ввода информации для сим карт"""
         return (0 < number_of_sim < 4) and type(number_of_sim) is int
 
-    def __add__(self, other):
+    def __add__(self, other) -> int or ValueError:
         """Дандер для реализации сложения количесва товаров класса"""
         if isinstance(other, Phone) or isinstance(other, Item):
             return self.quantity + other.quantity
