@@ -33,7 +33,7 @@ class Phone(Item):
         """Проверка корректности ввода информации для сим карт"""
         return (0 < number_of_sim < 4) and type(number_of_sim) is int
 
-    def __add__(self, other) -> int or ValueError:
+    def __add__(self, other: any) -> int or ValueError:
         """Дандер для реализации сложения количесва товаров класса"""
         if isinstance(other, Phone) or isinstance(other, Item):
             return self.quantity + other.quantity

@@ -74,7 +74,7 @@ class Item:
         """Дандер для вывода информации об экземпляре"""
         return f"Item{self.__name, self.price, self.quantity}"
 
-    def __add__(self, other) -> int or ValueError:
+    def __add__(self, other: any) -> int or ValueError:
         """Дандер для реализации сложения количесва товаров класса"""
         if isinstance(other, Item):
             return self.quantity + other.quantity

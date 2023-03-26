@@ -3,6 +3,9 @@ from src.item import Item
 
 class KeyboardMixin:
 
+    def __init__(self):
+        self.__language = "EN"
+
     def change_lang(self):
         """Изменяет раскладку клавиатуры"""
         if self.__language == "EN":
@@ -27,10 +30,10 @@ class KeyboardMixin:
 
 class KeyBoard(Item, KeyboardMixin):
 
-    def __init__(self, name: str, price: float, quantity: int, language: str = "EN") -> None:
+    def __init__(self, name: str, price: float, quantity: int) -> None:
         """Создание экземпляра класса KeyBoard. Наследуется от класса Item, KeyboardMixin"""
-        super().__init__(name, price, quantity)
-        self.language = language
+        Item.__init__(self, name, price, quantity)
+        KeyboardMixin.__init__(self)
 
     @classmethod
     def validate_name(cls, name: str) -> bool:
