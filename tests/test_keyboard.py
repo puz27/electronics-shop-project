@@ -18,7 +18,7 @@ def test_keyboard_language_1(test_object):
 
 
 def test_keyboard_language_2(test_object):
-    """Проверка  смены языка для клавиатуры"""
+    """Проверка смены языка для клавиатуры"""
     test_object.change_lang()
     assert (str(test_object.language)) == "RU"
 
