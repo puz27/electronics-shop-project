@@ -17,7 +17,12 @@ def load_csv() -> list:
                 else:
                     if len(roe) != 3:
                         raise InstantiateCSVError
-                count += 1
+                    count += 1
         return csv_data
-    except FileNotFoundError:
+    except InstantiateCSVError:
+        csv_error = InstantiateCSVError()
+        print(csv_error)
+        exit(1)
+    except Exception:
         print("Отсутствует файл item.csv")
+        exit(1)

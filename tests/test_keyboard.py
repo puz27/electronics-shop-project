@@ -27,3 +27,4 @@ def test_keyboard_len_name():
     """Проверка длины названия для класса KeyBoard"""
     with pytest.raises(ValueError, match="Длина наименования товара превышает 10 символов."):
         KeyBoard("Dell Long Descripton for test", 5, 5)
+
