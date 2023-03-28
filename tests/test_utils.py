@@ -1,12 +1,7 @@
-# from src.utils import load_csv
-# import pytest
-# from testfixtures import TempDirectory, tempdir
-#
-# @tempdir()
-# def test_f(dir):
-#     dir.write("test.txt", "1111111111")
-#     load_csv("test.txt")
+from src.item import Item
+from src.csverror import InstantiateCSVError
+import pytest
 
-
-
-
+def test_load_csv_1():
+    """Проверка общей стоимости товаров"""
+    assert Item.instantiate_from_csv("../tests/test_items.csv") == None

@@ -53,10 +53,10 @@ class Item:
         return len(name) <= 10
 
     @classmethod
-    def instantiate_from_csv(cls) -> None:
+    def instantiate_from_csv(cls, path: str ="../src/items.csv") -> None:
         """Cоздаем экзепляры класса на основе данных их файла"""
         cls.all = []
-        for data in load_csv():
+        for data in load_csv(path):
             cls(*data)
 
     @staticmethod
