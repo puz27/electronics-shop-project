@@ -1,5 +1,6 @@
 from src.item import Item
 import pytest
+from src.csverror import InstantiateCSVError
 
 
 @pytest.fixture
@@ -44,3 +45,22 @@ def test_item_add(test_object):
     test_1 = Item("Potato", 100.5, 50)
     test_2 = Item("Melon", 100.5, 50)
     assert (test_1 + test_2) == 100
+
+
+def test_load_csv_1():
+    """Проверка корректной загрузки"""
+    assert Item.instantiate_from_csv("../tests/test_items.csv") == None
+
+
+def test_load_csv_2():
+    """Проверка существования файла"""
+    with pytest.raises(Exception) as error:
+        Item.instantiate_from_csv("../tests/test_items1.csv")
+        assert str(error.value) == "Отсутствует файл item.csv"
+
+
+# def test_load_csv_3():
+#     """Проверка корректности файла"""
+#     with pytest.raises(InstantiateCSVError) as error:
+#         Item.instantiate_from_csv("../tests/test_items2.csv")
+#         assert str(error) == "Файл item.csv поврежден"

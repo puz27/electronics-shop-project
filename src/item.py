@@ -1,5 +1,5 @@
-import os
-from src.utils import load_csv
+import csv
+from src.csverror import InstantiateCSVError
 
 
 class Item:
@@ -55,8 +55,27 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls, path: str ="../src/items.csv") -> None:
         """Cоздаем экзепляры класса на основе данных их файла"""
-        cls.all = []
-        for data in load_csv(path):
+        all_info = []
+
+        try:
+            with open(path, encoding="CP1251") as csv_file:
+                take_csv_data = csv.reader(csv_file, delimiter=",")
+                count = 0
+                for roe in take_csv_data:
+                    if count != 0:
+                        all_info.append(roe)
+                    else:
+                        if len(roe) != 3:
+                            raise InstantiateCSVError
+
+                        count += 1
+        except InstantiateCSVError:
+            csv_error = InstantiateCSVError()
+            print(csv_error)
+        except Exception:
+            print("Отсутствует файл item.csv")
+
+        for data in all_info:
             cls(*data)
 
     @staticmethod
