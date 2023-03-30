@@ -52,15 +52,15 @@ def test_load_csv_1():
     assert Item.instantiate_from_csv("../tests/test_items.csv") == None
 
 
-def test_load_csv_2():
+def test_load_csv_2(capsys):
     """Проверка существования файла"""
-    with pytest.raises(Exception) as error:
-        Item.instantiate_from_csv("../tests/test_items1.csv")
-        assert str(error.value) == "Отсутствует файл item.csv"
+    Item.instantiate_from_csv(path="../tests/test_items1.csv")
+    captured = capsys.readouterr()
+    assert captured.out == 'Отсутствует файл item.csv\n'
 
 
-# def test_load_csv_3():
-#     """Проверка корректности файла"""
-#     with pytest.raises(InstantiateCSVError) as error:
-#         Item.instantiate_from_csv("../tests/test_items2.csv")
-#         assert str(error) == "Файл item.csv поврежден"
+def test_load_csv_3(capsys):
+    """Проверка корректности файла"""
+    Item.instantiate_from_csv(path="../tests/test_items2.csv")
+    captured = capsys.readouterr()
+    assert captured.out == 'Файл item.csv поврежден\n'
